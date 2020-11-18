@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstFragement">
+
+    <fragment
+        android:id="@+id/firstFragement"
+        android:name="com.example.navigation.FirstFragement"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first">
+        <action
+            android:id="@+id/action_firstFragement_to_secondFragment"
+            app:destination="@id/secondFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.navigation.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_secondFragment_to_firstFragement"
+            app:destination="@id/firstFragement" />
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/navigation" />
+        <argument
+            android:name="randomData"
+            app:argType="com.example.navigation.data.RandomData" />
+    </fragment>
+
+    <!-- Nested graph-->
+    <navigation
+        android:id="@+id/navigation"
+        app:startDestination="@id/thirdFragment">
+        <fragment
+            android:id="@+id/thirdFragment"
+            android:name="com.example.navigation.ThirdFragment"
+            android:label="fragment_third"
+            tools:layout="@layout/fragment_third">
+            <action
+                android:id="@+id/action_thirdFragment_to_fourthFragment2"
+                app:destination="@id/fourthFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/fourthFragment"
+            android:name="com.example.navigation.FourthFragment"
+            android:label="fragment_fourth"
+            tools:layout="@layout/fragment_fourth">
+            <action
+                android:id="@+id/action_fourthFragment_to_thirdFragment"
+                app:destination="@id/thirdFragment" />
+        </fragment>
+    </navigation>
+
+    <!-- Global action-->
+    <action
+        android:id="@+id/action_global_firstFragement"
+        app:destination="@id/firstFragement"
+        app:popUpTo="@id/firstFragement"
+        app:popUpToInclusive="true"
+        />
+
+</navigation>
